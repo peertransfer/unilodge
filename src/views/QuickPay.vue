@@ -74,7 +74,8 @@ export default {
           ui: 'ui',
           portal: 'portal',
           payment: 'payment',
-          selectedMethod: 'selectedMethod'
+          selectedMethod: 'selectedMethod',
+          mapping: 'mapping'
         }),
         ...mapGetters([
           'paymentMethods',
@@ -119,7 +120,7 @@ export default {
           country: this.payment.country,
 
           callbackUrl: "https://hooks.zapier.com/hooks/catch/5305195/borwi0j/",
-          callbackId: `${this.payment.callbackId}&a%5B29%5D=${this.selectedMethod.value.unformatted.fee}`,
+          callbackId: `${this.payment.callbackId}&a%5B${this.mapping[this.portal.portalCode]}%5D=${this.selectedMethod.value.unformatted.fee}`,
 
           paymentOptionsConfig: {
               filters: {

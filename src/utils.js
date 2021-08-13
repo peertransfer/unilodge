@@ -15,24 +15,24 @@ export default {
 
         if (operator == "+") {
             values["unformatted"] = {
-                total: (value + fee).toLocaleString(undefined, options),
-                fee: fee.toLocaleString(undefined, options)
+                total: (value + fee).toFixed(numberOfDecimalPlaces),
+                fee: fee.toFixed(numberOfDecimalPlaces)
             };
         } else if (operator == "*") {
             values["unformatted"] = {
-                total: (value / (100 - fee) * 100).toLocaleString(undefined, options),
-                fee: ((value / (100 - fee) * 100) - value).toLocaleString(undefined, options)
+                total: (value / (100 - fee) * 100).toFixed(numberOfDecimalPlaces),
+                fee: ((value / (100 - fee) * 100) - value).toFixed(numberOfDecimalPlaces)
             }
         }
         if (ccy.symbol_first === true) {
             values["formatted"] = {
-                total: (ccy.symbol || ccy.code) + values.unformatted.total,
-                fee: (ccy.symbol || ccy.code) + values.unformatted.fee
+                total: (ccy.symbol || ccy.code) + parseInt(values.unformatted.total).toLocaleString(undefined, options),
+                fee: (ccy.symbol || ccy.code) + parseInt(values.unformatted.fee).toLocaleString(undefined, options)
             };        
         } else {
-            values["formatted"] ={
-                total: values.unformatted.total + (ccy.symbol || ccy.code),
-                fee: values.unformatted.fee + (ccy.symbol || ccy.code)
+            values["formatted"] = {
+                total: parseInt(values.unformatted.total).toLocaleString(undefined, options) + (ccy.symbol || ccy.code),
+                fee: parseInt(values.unformatted.fee).toLocaleString(undefined, options) + (ccy.symbol || ccy.code)
             };
         }
         return values

@@ -15,6 +15,10 @@ const initialState = {
     configErrors: [],
     paymentErrors: [],
   },
+  mapping: {
+    ULD: 7,
+    ULO: 16
+  },
   portal: {
     env: null,
     portalCode: null,
@@ -58,7 +62,7 @@ const getters = {
         },
         value: utils.getAmount(state.payment.amount, 0, state.portal.recipient.currency, '+'),     
         type: ['online', 'credit_card', 'bank_transfer'],
-        currency: ['local']
+        currency: ['fx']
       },
       {
         description: {
@@ -67,16 +71,16 @@ const getters = {
         },
         value: utils.getAmount(state.payment.amount, 0.70, state.portal.recipient.currency, '+'),   
         type: ['bank_transfer'],
-        currency: ['foreign']
+        currency: ['nonFX']
       },
       {
         description: {
           title: "Domestic " + state.portal.recipient.currency.code  + " Credit Card",
-          sub: "Make an immediate payment with your domestic New Zealand issued credit card."
+          sub: "Make a payment with your domestic New Zealand issued credit card."
         },
         value: utils.getAmount(state.payment.amount, 2.75, state.portal.recipient.currency, '*'),   
         type: ['credit_card'],
-        currency: ['foreign']
+        currency: ['nonFX']
       }
     ]
   },

@@ -16,7 +16,7 @@
                     </h3>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li v-if="displayParameters.length > 0" class="list-group-item">
+                    <li v-if="result.reference.length > 0" class="list-group-item">
                         <dl>
                         <template v-for="p in displayParameters">
                             <dt :key="p.key + '_dt'">{{ p.label }}</dt>
